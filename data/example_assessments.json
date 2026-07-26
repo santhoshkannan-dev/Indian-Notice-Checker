@@ -1,0 +1,111 @@
+{
+  "model_repo": "unsloth/Qwen3.5-4B-MTP-GGUF",
+  "model_name": "qwen3.5-4b-q8",
+  "endpoint": "https://abidali899--indian-scam-checker-qwen35-4b-q8-serve.modal.run",
+  "endpoint_type": "Modal-hosted llama.cpp OpenAI-compatible endpoint",
+  "generated_at": "2026-07-26",
+  "examples": {
+    "text-courier": {
+      "risk_label": "Likely scam",
+      "simple_explanation": "This message claims to be from India Post but uses a suspicious domain and demands immediate payment to prevent parcel destruction.",
+      "red_flags": [
+        "Uses a fake domain (indiapost-delivery.xyz) instead of the official indiapost.gov.in website.",
+        "Demands immediate payment via an untrusted link.",
+        "Threatens destruction of the parcel to create urgency.",
+        "Requests payment without providing a secure, official channel."
+      ],
+      "safe_next_steps": [
+        "Do not click the link or make any payment.",
+        "Contact India Post directly using the official phone number or visit their physical office.",
+        "Verify the parcel status through the official India Post website or app.",
+        "Use the relevant service's official reporting channel if needed."
+      ],
+      "reply_draft": ""
+    },
+    "text-fbr": {
+      "risk_label": "Likely scam",
+      "simple_explanation": "This message claims a government refund but requests sensitive data (PAN/Aadhaar, bank card) via a link, which is a classic tax refund scam pattern.",
+      "red_flags": [
+        "Requests submission of PAN/Aadhaar and bank card details",
+        "Uses a suspicious link to process payment",
+        "Claims eligibility for a large refund without verification",
+        "Impersonates the Income Tax Department"
+      ],
+      "safe_next_steps": [
+        "Do not click the link or submit any personal data.",
+        "Verify refund status directly through the official Income Tax e-filing portal.",
+        "Contact the Income Tax helpline at 1961 for confirmation.",
+        "Use the relevant service's official reporting channel if needed."
+      ],
+      "reply_draft": ""
+    },
+    "text-bank": {
+      "risk_label": "Likely scam",
+      "simple_explanation": "This message claims to be from SBI but demands an OTP, which is a definitive sign of a phishing attempt.",
+      "red_flags": [
+        "Request for OTP sent to the phone",
+        "Threat of account suspension to force immediate action",
+        "Untrusted sender claiming to be a bank support team",
+        "Urgent instruction to share sensitive credentials"
+      ],
+      "safe_next_steps": [
+        "Do not share the OTP or any personal data with anyone.",
+        "Contact SBI directly using the official phone number or app found on their verified website.",
+        "Use the relevant service's official reporting channel if needed.",
+        "Monitor your account activity for unauthorized transactions."
+      ],
+      "reply_draft": ""
+    },
+    "image-courier": {
+      "risk_label": "Suspicious",
+      "simple_explanation": "This message claims a package delivery failed and demands an address update via a short link, which is a common delivery scam tactic.",
+      "red_flags": [
+        "Sender is an unknown number (+91 98765 43210) with no official branding.",
+        "Message claims a package cannot be delivered and threatens return.",
+        "Includes a short, unverified link (cut.ly/drPYUdj2) for action.",
+        "Urges immediate update of address to avoid package return."
+      ],
+      "safe_next_steps": [
+        "Do not click the link; it may lead to phishing sites.",
+        "Contact your courier company directly using their official website or app.",
+        "Verify the sender’s identity through official channels.",
+        "Do not share personal data or update addresses via the link."
+      ],
+      "reply_draft": ""
+    },
+    "image-mobile": {
+      "risk_label": "Suspicious",
+      "simple_explanation": "This message requests moving the conversation to WhatsApp and provides an untrusted phone number for negotiation.",
+      "red_flags": [
+        "Request to move conversation to WhatsApp",
+        "Untrusted phone number provided for contact",
+        "Vague product description ('Mobile')",
+        "Sender name does not match product listing"
+      ],
+      "safe_next_steps": [
+        "Do not click any links or chat on WhatsApp.",
+        "Verify the seller through the official platform or app.",
+        "Check the seller's verified status and reviews.",
+        "Avoid sharing personal or payment details."
+      ],
+      "reply_draft": ""
+    },
+    "image-traffic": {
+      "risk_label": "Likely scam",
+      "simple_explanation": "This message claims an overdue traffic fine and demands immediate payment via a suspicious link. It uses urgency and impersonation to pressure the recipient.",
+      "red_flags": [
+        "Impersonation of e-challan traffic police service",
+        "Urgent demand to pay to avoid legal action",
+        "Suspicious URL (v1.mk) not matching official domains",
+        "Request to click a link for payment"
+      ],
+      "safe_next_steps": [
+        "Do not click the link or provide any payment information.",
+        "Contact mParivahan or local traffic police directly through their official app or website to verify the fine.",
+        "Report the message to your mobile carrier or local authorities.",
+        "Save the message as evidence if needed for reporting."
+      ],
+      "reply_draft": ""
+    }
+  }
+}
