@@ -17,7 +17,7 @@ const elements = {
   textHint: document.querySelector("#textHint"),
   saveTrace: document.querySelector("#saveTrace"),
   statusText: document.querySelector(".status-text"),
-  languageOptions: document.querySelectorAll(".language-option"),
+  languageSelect: document.querySelector("#languageSelect"),
 };
 
 const translations = {
@@ -98,7 +98,7 @@ const translations = {
   },
   hi: {
     pageTitle: "इंडिया नोटिस हेल्पर",
-    pageDescription: "भारतीय नोटिस और संदेशों को आम स्कैम संकेतों के लिए जांचें।",
+    pageDescription: "भारतीय नोटिस and संदेशों को आम स्कैम संकेतों के लिए जांचें।",
     statusChecking: "मॉडल की जांच की जा रही है",
     statusReady: "मॉडल तैयार है",
     statusCredentials: "मॉडल क्रेडेंशियल आवश्यक हैं",
@@ -131,17 +131,17 @@ const translations = {
     examplesTitle: "भारत में आम संदेश",
     courierFee: "कूरियर शुल्क",
     courierFeeText: "तत्काल पार्सल भुगतान लिंक",
-    taxRefund: "टैक्स रिफंड",
-    taxRefundText: "अवांछित रिफंड अनुरोध",
-    bankAlert: "बैंक अलर्ट",
-    bankAlertText: "सुरक्षा कोड अनुरोध",
-    screenshotsTitle: "वास्तविक स्कैम स्क्रीनशॉट",
-    courierScam: "कूरियर स्कैम",
-    courierScamText: "फर्जी कूरियर वितरण संदेश",
-    mobileScam: "मोबाइल स्कैम",
-    mobileScamText: "फर्जी मोबाइल ऑपरेटर संदेश",
-    trafficScam: "ट्रैफिक चालान",
-    trafficScamText: "फर्जी ई-चालान जुर्माना संदेश",
+    taxRefund: "Tax refund",
+    taxRefundText: "Unexpected refund request",
+    bankAlert: "Bank alert",
+    bankAlertText: "Security code request",
+    screenshotsTitle: "Real scam screenshots",
+    courierScam: "Courier scam",
+    courierScamText: "Fake delivery fee message",
+    mobileScam: "Mobile scam",
+    mobileScamText: "Fake mobile operator message",
+    trafficScam: "Traffic challan",
+    trafficScamText: "Fake e-challan fine message",
     resultsEyebrow: "सुरक्षा मूल्यांकन",
     resultsTitle: "हमें क्या मिला",
     explanationTitle: "सरल स्पष्टीकरण",
@@ -154,29 +154,139 @@ const translations = {
     disclaimerText: "इंडिया नोटिस हेल्पर आधिकारिक सत्यापन प्रदान नहीं करता है। यह आम स्कैम संकेतों की जांच करता है और सुरक्षित अगले कदम देता है। भुगतान करने या व्यक्तिगत जानकारी साझा करने से पहले हमेशा आधिकारिक वेबसाइटों या हेल्पलाइन के माध्यम से सत्यापित करें।",
     footerOne: "भारत में सुरक्षित डिजिटल निर्णयों के लिए निर्मित। संतोष कन्नन द्वारा निर्मित।",
     footerTwo: "कभी भी ओटीपी, पिन, पासवर्ड या सीवीवी साझा न करें।",
-    requestStartError: "ऐप अनुरोध शुरू नहीं कर सका।",
-    requestReadError: "ऐप परिणाम नहीं पढ़ सका।",
-    requestFailedError: "अनुरोध पूरा नहीं किया जा सका।",
-    noResultError: "ऐप ने कोई परिणाम नहीं दिया।",
-    analyzeError: "इस इनपुट का विश्लेषण करने में असमर्थ।",
-    imageTypeError: "पीएनजी, जेपीजी, या वेबपी छवि का उपयोग करें।",
-    imageSizeError: "कृपया 8 एमबी से छोटी छवि चुनें।",
-    exampleImageError: "उदाहरण छवि लोड नहीं की जा सकी।",
-    emptyInputError: "जारी रखने के लिए एक संदेश पेस्ट करें या स्क्रीनशॉट अपलोड करें।",
-    modelSource: "तैनात किए गए Qwen3.5 4B मॉडल एंडपॉइंट द्वारा विश्लेषण किया गया।",
-    cachedSource: "कैश किया गया मॉडल परिणाम",
     riskLooksNormal: "सामान्य लगता है",
     riskVerifyFirst: "सत्यापन करें",
     riskSuspicious: "संदिग्ध",
     riskLikelyScam: "संभावित स्कैम",
     riskInappropriate: "अनुचित",
   },
+  ta: {
+    pageTitle: "இந்தியா நோட்டீஸ் ஹெல்பர்",
+    pageDescription: "இந்திய நோட்டீஸ்கள் மற்றும் செய்திகளை ஸ்கேம் அறிகுறிகளுக்கு சரிபார்க்கவும்.",
+    heroTitle: "இந்த நோட்டீஸ்",
+    heroSafe: "பாதுகாப்பானதா?",
+    heroText: "சந்தேகத்திற்குரிய பில்கள், வங்கி எச்சரிக்கைகள், வருமான வரி/ஜிஎஸ்டி செய்திகள், சலான்கள் மற்றும் எஸ்எம்எஸ் செய்திகளை சரிபார்க்கவும்.",
+    checkerTitle: "நோட்டீஸ் அல்லது செய்தியைச் சரிபார்க்கவும்",
+    uploadLabel: "ஸ்கிரீன்ஷாட்டைப் பதிவேற்றவும்",
+    pasteLabel: "அல்லது செய்தியை ஒட்டவும்",
+    checkButton: "இந்த நோட்டீஸை சரிபார்க்கவும்",
+    checkingButton: "பாதுகாப்பாக சரிபார்க்கப்படுகிறது...",
+    disclaimerText: "இந்தியா நோட்டீஸ் ஹெல்பர் அதிகாரப்பூர்வ சரிபார்ப்பை வழங்காது. இது பொதுவான மோசடி சமிக்ஞைகளைச் சரிபார்த்து, பாதுகாப்பான அடுத்த படிகளை வழங்குகிறது. பணம் செலுத்துவதற்கு அல்லது தனிப்பட்ட தகவல்களைப் பகிர்வதற்கு முன் எப்போதும் சரிபார்க்கவும்.",
+    footerOne: "இந்தியாவில் பாதுகாப்பான டிஜிட்டൽ முடிவுகளுக்காக உருவாக்கப்பட்டது. சந்தோஷ் கண்ணன் தயாரிப்பு.",
+    footerTwo: "ஓடிபி, பின், கடவுச்சொல் அல்லது சிவிவி எண்களை யாരുடனும் பகிர வேண்டாம்.",
+  },
+  te: {
+    pageTitle: "ఇండియా నోటీస్ హెల్పర్",
+    pageDescription: "భారతీయ నోటీసులు మరియు సందేశాలలో స్కామ్ సంకేతాలను తనిఖీ చేయండి.",
+    heroTitle: "ఈ నోటీసు",
+    heroSafe: "సురક્ષితమేనా?",
+    heroText: "అనుమానాస్పద బిల్లులు, బ్యాంక్ హెచ్చరికలు, ఆదాయపు పన్ను/జీఎస్టీ సందేశాలు, చలాన్లు మరియు ఎస్ఎంఎస్ స్క్రీన్ షాట్లను తనిਖీ చేయండి.",
+    checkerTitle: "నోటీసు లేదా సందేశాన్ని తనిਖీ చేయండి",
+    uploadLabel: "سک్రీన్‌షాట్ అప్‌లోడ్ చేయండి",
+    pasteLabel: "లేదా సందేశాన్ని పేస్ట్ చేయండి",
+    checkButton: "ఈ నోటీసును తనిਖీ చేయండి",
+    checkingButton: "సురक्षितంగా తనిਖీ చేస్తోంది...",
+    disclaimerText: "ఇండియా నోటీస్ హెల్పర్ అధికారిక ధృవీకరణను అందించదు. ఇది సాధారణ స్కామ్ సిగ్నల్స్ తనిਖీ చేసి తదుపరి సూచనలు ఇస్తుంది. చెల్లింపులు చేసే ముందు ఎల్లప్పుడూ ధృవీకరించుకోండి.",
+    footerOne: "భారతదేశంలో సురక్షితమైన డిజిటల్ నిర్ణయాల కోసం నిర్మించబడింది. సంతోష్ కన్నన్ చేత నిర్మించబడింది.",
+    footerTwo: "OTPలు, PINలు, పాస్‌వర్డ్‌లు లేదా CVVలను ఎప్పుడੂ షੇർ చేయవద్దు.",
+  },
+  kn: {
+    pageTitle: "ಇಂಡಿಯಾ ನೋಟಿಸ್ ಹೆಲ್ಪರ್",
+    pageDescription: "ಭಾರತೀಯ ನೋಟಿಸ್‌ಗಳು ಮತ್ತು ಸಂದೇಶಗಳಲ್ಲಿ ವಂಚನೆ ಸಂಕೇतಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.",
+    heroTitle: "ಈ ನೋಟಿಸ್",
+    heroSafe: "ಸುರಕ್ಷಿತವೇ?",
+    heroText: "ಸಂದೇಹಾಸ್ಪದ ಬಿಲ್ಲುಗಳು, ಬ್ಯಾಂಕ್ ಎಚ್ಚರಿಕೆಗಳು, ಆದಾಯ ತೆರಿಗೆ/ಜಿಎಸ್‌ಟಿ ಸಂದೇಶಗಳು, ಚಲನ್ ಮತ್ತು ಎಸ್‌ಎಂಎಸ್ ಸ್ಕ್ರೀನ್‌ಶಾಟ್‌ಗಳನ್ನು ಪರಿಶೀಲಿಸಿ.",
+    checkerTitle: "ನೋಟಿಸ್ ಅಥವಾ ಸಂದೇಶವನ್ನು ಪರಿಶೀಲಿಸಿ",
+    uploadLabel: "ಸ್ಕ್ರೀನ್‌ಶಾಟ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ",
+    pasteLabel: "ಅಥವಾ ಸಂದೇಶವನ್ನು ಪೇಸ್ಟ್ ಮಾಡಿ",
+    checkButton: "ಈ ನೋಟಿಸ್ ಪರಿಶೀಲಿಸಿ",
+    checkingButton: "ಸುರಕ್ಷಿತವಾಗಿ ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ...",
+    disclaimerText: "ಇಂಡಿಯಾ ನೋಟಿಸ್ ಹೆಲ್ಪರ್ ಅಧಿಕೃತ ಪರಿಶೀಲನೆ ಒದಗಿಸುವುದಿಲ್ಲ. ಇದು ವಂಚನೆ ಸಂಕೇತಗಳನ್ನು ಗುರುತಿಸಿ ಸುರಕ್ಷಿತ ಕ್ರಮಗಳನ್ನು ಸೂಚಿಸುತ್ತದೆ. ಪಾವತಿಸುವ ಮುನ್ನ ಅಧಿಕೃತ ಸೈಟ್‌ನಲ್ಲಿ ಪರಿಶೀಲಿಸಿ.",
+    footerOne: "ಭಾರತದಲ್ಲಿ ಸುರಕ್ಷಿತ ಡಿಜಿಟൽ ನಿರ್ಧಾರಗಳಿಗಾಗಿ ನಿರ್ಮಿಸಲಾಗಿದೆ. ಸಂತೋಷ್ ಕಣ್ಣನ್ ಅವರಿಂದ ನಿರ್ಮಿಸಲಾಗಿದೆ.",
+    footerTwo: "ಒಟಿಪಿ, ಪಿನ್, ಪಾಸ್‌ವರ್ಡ್ ಅಥವಾ ಸಿವಿವಿಗಳನ್ನು ಎಂದಿಗೂ ಹಂಚಿಕೊಳ್ಳಬೇಡಿ.",
+  },
+  bn: {
+    pageTitle: "ইন্ডিয়া নোটিস হেল্পার",
+    pageDescription: "ভারতীয় নোটিশ এবং বার্তাগুলিতে স্ক্যামের লক্ষণগুলি পরীক্ষা করুন।",
+    heroTitle: "এই নোটিশটি কি",
+    heroSafe: "নিরাপদ?",
+    heroText: "সন্দেহজনক বিল, ব্যাঙ্ক অ্যালার্ট, আয়কর/জিএসটি বার্তা, চালান এবং এসএমএস স্ক্রিনশট পরীক্ষা করুন।",
+    checkerTitle: "একটি নোটিশ বা বার্তা পরীক্ষা করুন",
+    uploadLabel: "স্ক্রিনশট আপলোড করুন",
+    pasteLabel: "অথবা বার্তাটি পেস্ট করুন",
+    checkButton: "এই নোটিশ পরীক্ষা করুন",
+    checkingButton: "নিরাপদে পরীক্ষা করা হচ্ছে...",
+    disclaimerText: "ইন্ডিয়া নোটিস হেল্পার অফিসিয়াল ভেরিফিকেশন প্রদান করে না। এটি সাধারণ স্ক্যামের লক্ষণ পরীক্ষা করে পরবর্তী পদক্ষেপের পরামর্শ দেয়। অর্থ প্রদানের আগে সর্বদা ভেরিফাই করুন।",
+    footerOne: "ভারতে নিরাপদ ডিজিটাল সিদ্ধান্তের জন্য নির্মিত। সন্তোষ কান্নান দ্বারা নির্মিত।",
+    footerTwo: "ওটিপি, পিন, পাসওয়ার্ড বা সিভিভি শেয়ার করবেন না।",
+  },
+  mr: {
+    pageTitle: "इंडिया नोटीस हेल्पर",
+    pageDescription: "भारतीय नोटीस आणि संदेशांमधील स्कॅम संकेत तपासा.",
+    heroTitle: "ही नोटीस",
+    heroSafe: "सुरक्षित आहे का?",
+    heroText: "संशयास्पद बिले, बँक अलर्ट, आयकर/जीएसटी संदेश, चलन आणि एसएमएस स्क्रीनशॉट तपासा.",
+    checkerTitle: "नोटीस किंवा संदेश तपासा",
+    uploadLabel: "स्क्रीनशॉट अपलोड करा",
+    pasteLabel: "किंवा संदेश पेस्ट करा",
+    checkButton: "ही नोटीस तपासा",
+    checkingButton: "सुरक्षितपणे तपासत आहे...",
+    disclaimerText: "इंडिया नोटीस हेल्पर अधिकृत पडताळणी प्रदान करत नाही. हे स्कॅम संकेत शोधून सुरक्षित पावले सुचवते. व्यवहार करण्यापूर्वी नेहमी अधिकृत साइटवर खात्री करा.",
+    footerOne: "भारतात सुरक्षित डिजिटल निर्णयांसाठी विकसित. संतोष कन्नन यांनी बनवले.",
+    footerTwo: "ओटीपी, पिन, पासवर्ड किंवा सीवीव्ही कधीही शेअर करू नका.",
+  },
+  gu: {
+    pageTitle: "ઇન્ડિયા નોટિસ હેલ્પર",
+    pageDescription: "ભારતીય નોટિસ અને સંદેશાઓમાં સ્કેમ સંકેતો તપાસો.",
+    heroTitle: "આ નોટિસ",
+    heroSafe: "સુરક્ષિત છે?",
+    heroText: "શંકાસ્પદ બિલ, બેંક એલર્ટ, આવકવેરા/જીએસટી સંદેશાઓ, ચલણ અને એસએમએસ સ્ક્રીનશોટ તપાસો.",
+    checkerTitle: "નોટિસ અથવા સંદેશ તપાસો",
+    uploadLabel: "સ્ક્રીનશોટ અપલોડ કરો",
+    pasteLabel: "અથવા સંદેશ પેસ્ટ કરો",
+    checkButton: "આ નોટિસ તપાસો",
+    checkingButton: "સુરક્ષિત રીતે તપાસ ચાલુ છે...",
+    disclaimerText: "ઇન્ડિયા નોટિસ હેલ્પર સત્તાવાર ચકાસણી પ્રદાન કરતું નથી. તે સ્કેમ સંકેતો શોધીને સુરક્ષિત પગલાં સૂચવે છે. કોઈ પણ વ્યવહાર પહેલાં ચકાસણી કરો.",
+    footerOne: "ભારતમાં સુરક્ષિત ડિજิตલ નિર્ણયો માટે નિર્મિત. સંતોષ કન્નન દ્વારા નિર્મિત.",
+    footerTwo: "OTP, PIN, પાસવર્ડ કે CVV ક્યારેય શેર કરશો નહીં.",
+  },
+  ml: {
+    pageTitle: "ഇന്ത്യ നോട്ടീസ് ഹെൽപ്പർ",
+    pageDescription: "ഇന്ത്യൻ നോട്ടീസുകളിലും സന്ദേശങ്ങളിലും തട്ടിപ്പ് അടയാളങ്ങൾ പരിശോധിക്കുക.",
+    heroTitle: "ഈ നോട്ടീസ്",
+    heroSafe: "സുരക്ഷിതമാണോ?",
+    heroText: "സംശയകരമായ ബില്ലുകൾ, ബാങ്ക് അലേർട്ടുകൾ, ആദായനികുതി/ജിഎസ്ടി സന്ദേശങ്ങൾ, ചലാനുകൾ, എസ്എംഎസ് സ്ക്രീൻഷോട്ടുകൾ പരിശോധിക്കുക.",
+    checkerTitle: "നോട്ടീസ് അല്ലെങ്കിൽ സന്ദേശം പരിശോധിക്കുക",
+    uploadLabel: "സ്ക്രീൻഷോട്ട് അപ്‌ലോഡ് ചെയ്യുക",
+    pasteLabel: "അല്ലെങ്കിൽ സന്ദേശം പേസ്റ്റ് ചെയ്യുക",
+    checkButton: "ഈ നോട്ടീസ് പരിശോധിക്കുക",
+    checkingButton: "സുരക്ഷിതമായി പരിശോധിക്കുന്നു...",
+    disclaimerText: "ഇന്ത്യ നോട്ടീസ് ഹെൽപ്പർ ഔദ്യോഗിക പരിശോധന നൽകുന്നില്ല. ഇത് തട്ടിപ്പ് അടയാളങ്ങൾ കണ്ടെത്തി സുരക്ഷിത മാർഗ്ഗങ്ങൾ നിർദ്ദേശിക്കുന്നു. പണം നൽകുന്നതിന് മുമ്പ് പരിശോധിക്കുക.",
+    footerOne: "ഇന്ത്യയിൽ സുരക്ഷിതമായ ഡിജിറ്റൽ തീരുമാനങ്ങൾക്കായി നിർമ്മിച്ചത്. സന്തോഷ് കണ്ണൻ നിർമ്മിച്ചത്.",
+    footerTwo: "ഒടിപി, പിൻ, പാസ്‌വേഡ് അല്ലെങ്കിൽ സിവിവി എന്നിവ ഒരിക്കലും പങ്കിടരുത്.",
+  },
+  pa: {
+    pageTitle: "ਇੰਡੀਆ ਨੋਟਿਸ ਹੈਲਪਰ",
+    pageDescription: "ਭਾਰਤੀ ਨੋਟਿਸਾਂ ਅਤੇ ਸੁਨੇਹਿਆਂ ਵਿੱਚ ਸਕੈਮ ਦੇ ਸੰਕੇਤਾਂ ਦੀ ਜਾਂਚ ਕਰੋ।",
+    heroTitle: "ਕੀ ਇਹ ਨੋਟਿਸ",
+    heroSafe: "ਸੁਰੱਖਿਅਤ ਹੈ?",
+    heroText: "ਸ਼ੱਕੀ ਬਿੱਲ, ਬੈਂਕ ਅਲਰਟ, ਇਨਕਮ ਟੈਕਸ/ਜੀਐਸਟੀ ਸੁਨੇਹੇ, ਚਲਾਨ ਅਤੇ ਐਸਐਮਐਸ ਸਕ੍ਰੀਨਸ਼ਾਟ ਦੀ ਜਾਂਚ ਕਰੋ।",
+    checkerTitle: "ਨੋਟਿਸ ਜਾਂ ਸੁਨੇਹੇ ਦੀ ਜਾਂਚ ਕਰੋ",
+    uploadLabel: "ਸਕ੍ਰੀਨਸ਼ਾਟ ਅਪਲੋਡ ਕਰੋ",
+    pasteLabel: "ਜਾਂ ਸੁਨੇਹਾ ਪੇਸਟ ਕਰੋ",
+    checkButton: "ਇਸ ਨੋਟਿਸ ਦੀ ਜਾਂਚ ਕਰੋ",
+    checkingButton: "ਸੁਰੱਖਿਅਤ ਢੰਗ ਨਾਲ ਜਾਂਚ ਕੀਤੀ ਜਾ ਰਹੀ ਹੈ...",
+    disclaimerText: "ਇੰਡੀਆ ਨੋਟਿਸ ਹੈਲਪਰ ਅਧਿਕਾਰਤ ਪੁਸ਼ਟੀ ਨਹੀਂ ਕਰਦਾ। ਇਹ ਸਿਰਫ਼ ਆਮ ਸਕੈਮ ਸੰਕੇਤਾਂ ਦੀ ਜਾਂਚ ਕਰਦਾ ਹੈ। ਭੁਗਤਾਨ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਹਮੇਸ਼ਾ ਪੁਸ਼ਟੀ ਕਰੋ।",
+    footerOne: "ਭਾਰਤ ਵਿੱਚ ਸੁਰੱਖਿਅਤ ਡਿਜੀਟਲ ਫੈਸਲਿਆਂ ਲਈ ਬਣਾਇਆ ਗਿਆ। ਸੰਤੋਸ਼ ਕੰਨਨ ਦੁਆਰਾ ਨਿਰਮਿਤ।",
+    footerTwo: "ਓਟੀਪੀ, ਪਿੰਨ, ਪਾਸਵਰਡ ਜਾਂ ਸੀਵੀਵੀ ਕਦੇ ਵੀ ਸਾਂਝਾ ਨਾ ਕਰੋ।",
+  }
 };
 
 let imageDataUrl = "";
 let activeMode = null;
 let activeExampleId = "";
-let currentLanguage = localStorage.getItem("notice-helper-language") === "hi" ? "hi" : "en";
+const supportedLangs = ["en", "hi", "ta", "te", "kn", "bn", "mr", "gu", "ml", "pa"];
+let currentLanguage = supportedLangs.includes(localStorage.getItem("notice-helper-language")) ? localStorage.getItem("notice-helper-language") : "en";
 let currentStatus = null;
 let currentRiskLabel = "";
 
@@ -185,7 +295,7 @@ function t(key) {
 }
 
 function applyLanguage(language) {
-  currentLanguage = language === "hi" ? "hi" : "en";
+  currentLanguage = supportedLangs.includes(language) ? language : "en";
   localStorage.setItem("notice-helper-language", currentLanguage);
   document.documentElement.lang = currentLanguage;
   document.documentElement.dir = "ltr";
@@ -201,11 +311,9 @@ function applyLanguage(language) {
   document.querySelectorAll("[data-i18n-alt]").forEach((element) => {
     element.alt = t(element.dataset.i18nAlt);
   });
-  elements.languageOptions.forEach((button) => {
-    const active = button.dataset.language === currentLanguage;
-    button.classList.toggle("active", active);
-    button.setAttribute("aria-pressed", String(active));
-  });
+  if (elements.languageSelect) {
+    elements.languageSelect.value = currentLanguage;
+  }
   setStatus(currentStatus);
   if (currentRiskLabel) setRiskLabel(currentRiskLabel);
   if (elements.button.classList.contains("loading")) {
@@ -488,9 +596,11 @@ document.querySelectorAll(".copy-button").forEach((button) => {
   });
 });
 
-elements.languageOptions.forEach((button) => {
-  button.addEventListener("click", () => applyLanguage(button.dataset.language));
-});
+if (elements.languageSelect) {
+  elements.languageSelect.addEventListener("change", (event) => {
+    applyLanguage(event.target.value);
+  });
+}
 
 applyLanguage(currentLanguage);
 loadStatus();

@@ -310,13 +310,22 @@ def call_model(
 ) -> dict[str, Any]:
     telemetry = telemetry if telemetry is not None else {}
     client, model_name = create_model_client()
-    language_instruction = (
-        "Write all user-facing JSON values in clear Hindi script."
-        if output_language == "hi"
-        else "Write all user-facing JSON values in simple English."
-    )
+    LANGUAGES = {
+        "en": "simple English",
+        "hi": "clear Hindi script",
+        "ta": "clear Tamil script",
+        "te": "clear Telugu script",
+        "kn": "clear Kannada script",
+        "bn": "clear Bengali script",
+        "mr": "clear Marathi script",
+        "gu": "clear Gujarati script",
+        "ml": "clear Malayalam script",
+        "pa": "clear Punjabi script",
+    }
+    lang_name = LANGUAGES.get(output_language, "simple English")
+    language_instruction = f"Write all user-facing JSON values in {lang_name}."
     prompt = (
-        "Assess the following Pakistani notice or message for scam risk. "
+        "Assess the following Indian notice or message for scam risk. "
         "Explain visible evidence and give safe next steps. "
         f"{language_instruction}\n\n"
         f"Message text:\n{text.strip() or '[No text supplied; inspect the image.]'}"
@@ -405,7 +414,8 @@ def analyze_notice(
     text = (text or "").strip()
     image_data_url = image_data_url or ""
     example_id = (example_id or "").strip()
-    output_language = "hi" if output_language == "hi" else "en"
+    supported_langs = {"en", "hi", "ta", "te", "kn", "bn", "mr", "gu", "ml", "pa"}
+    output_language = output_language if output_language in supported_langs else "en"
 
     def finish(
         response: dict[str, Any],
@@ -460,11 +470,7 @@ def analyze_notice(
         )
     telemetry: dict[str, Any] = {}
     try:
-        result = (
-            call_model(text, image_data_url, telemetry, output_language="hi")
-            if output_language == "hi"
-            else call_model(text, image_data_url, telemetry)
-        )
+        result = call_model(text, image_data_url, telemetry, output_language=output_language)
         return finish(
             {
                 "ok": True,
